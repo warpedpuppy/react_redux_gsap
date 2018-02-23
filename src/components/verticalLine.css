@@ -1,0 +1,9 @@
+.verticalLine {
+	height:100vw;
+	width:30px;
+	background-color:red;
+	margin: 0 0 0 20px;
+	display:inline-block;
+	position:relative;
+	right:10px;
+}
