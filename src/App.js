@@ -1,54 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import VerticalLine from './components/verticalLine';
-import animation from './animation';
-
-let vlsRefs = ['line 1'];
-
-
-
-
+import VerticalLineShell from './components/verticalLineShell';
+import HorizontalLineShell from './components/horizontalLineShell';
 class App extends Component {
   constructor(props){
-    super(props)
-    this.childDiv;
-    this.newArr = vlsRefs.map( (item, i) => {
-        console.log(item)
-        return <div className="blue" ref={i => this[item] = i} key={i}>div</div> //works
-    } )
+    super(props);
+    this.counter = 0;
+    this.refArray = [];
     this.showButtonHandler = this.showButtonHandler.bind(this);
-    this.setRef = this.setRef.bind(this);
-  }
-  setRef(div, str) {
-        this.childDiv = div;
+    this.showButton = this.showButton.bind(this);
+    this.showButton2 = this.showButton2.bind(this);
+    this.state = {
+      buttonStyle: {visibility:'visible'},
+      buttonStyle2: {visibility:'visible'}
     }
+  }
   showButtonHandler (){
-    // console.log('click', this['line 1'])
-    //console.log(this['line 1'])
-    animation.hide(this['line 1'])
+    this.setState({buttonStyle: {visibility:'hidden'}})
+    this.vert.showButtonHandler(this.showButton)
+
   }
-  showButtonHandler_2 (){
-    // console.log('click', this['line 1'])
-    //console.log(this['line 1'])
-    animation.hide(this.childDiv)
+  showButton (){
+     this.setState({buttonStyle: {visibility:'visible'}})
   }
-  componentDidMount () {
-     //console.log('get the child ref',this.child.refs);
+  horizButtonHandler (){
+    this.setState({buttonStyle2: {visibility:'hidden'}})
+    this.horiz.showButtonHandler(this.showButton2)
+  }
+  showButton2 (){
+     this.setState({buttonStyle2: {visibility:'visible'}})
   }
   render() {
     return (
       <div className="App">
+      <VerticalLineShell ref={item => this.vert = item} />
+      <HorizontalLineShell ref={item => this.horiz = item} />
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-          <button onClick={() => this.showButtonHandler()}>affect child</button>
-          <button onClick={() => this.showButtonHandler_2()}>affect child component</button>
+          <button className="button" onClick={() => this.showButtonHandler()} style={this.state.buttonStyle}>vertical lines</button>
+          <button className="button" onClick={() => this.horizButtonHandler()} style={this.state.buttonStyle2}>horizontal lines</button>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <VerticalLine setRef={this.setRef} />
         {this.newArr}
       </div>
     );
