@@ -1,4 +1,4 @@
-import {TweenLite, Elastic} from 'gsap';
+import {TweenLite} from 'gsap';
 
 
 export default {
