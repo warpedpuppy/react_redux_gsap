@@ -1,12 +1,12 @@
 import {TweenLite, TweenMax} from 'gsap';
 
-let dir = true;
+
 export default {
 	
 	hide(target) {
 		return TweenLite.to(target, 1, { right:'-10px',height:0 })
 	},
-	staggerLeave(array, cb) {
+	staggerLeave(array, cb, dir) {
 
 		for(let i = 0; i < array.length; i++){
 			let item = array[i];

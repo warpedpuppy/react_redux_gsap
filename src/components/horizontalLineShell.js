@@ -11,6 +11,7 @@ export default class HorizontalLineShell extends React.Component {
 	constructor(props){
 		super(props);
 		this.refArray = [];
+		this.enter = true;
 		this.newArr = [vlsRefs.map( (item, i) => {
             let ref = `childDivNew ${i}`;
             this.refArray.push(ref)
@@ -23,7 +24,8 @@ export default class HorizontalLineShell extends React.Component {
 	  for (let i = 0; i < this.refArray.length; i++) {
 	    tempArr.push(this[this.refArray[i]])
 	  }
-	  animation.staggerLeave(tempArr, cb)
+	  animation.staggerLeave(tempArr, cb, this.enter)
+	  this.enter = !this.enter;
 	}
 	render(){
 		return (

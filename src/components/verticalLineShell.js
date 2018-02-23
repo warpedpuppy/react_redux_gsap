@@ -11,6 +11,7 @@ export default class VerticalLineShell extends React.Component {
 	constructor(props){
 		super(props);
 		this.refArray = [];
+		this.enter = true;
 		this.newArr = [vlsRefs.map( (item, i) => {
             let ref = `childDivNew ${i}`;
             this.refArray.push(ref)
@@ -21,10 +22,10 @@ export default class VerticalLineShell extends React.Component {
 	showButtonHandler (cb) {
 	  let tempArr = [];
 	  for (let i = 0; i < this.refArray.length; i++) {
-	    // animation.hide(this[this.refArray[i]]);
 	    tempArr.push(this[this.refArray[i]])
 	  }
-	  animation.staggerLeave(tempArr, cb)
+	  animation.staggerLeave(tempArr, cb, this.enter)
+	  this.enter = !this.enter;
 	}
 	render(){
 		return (
